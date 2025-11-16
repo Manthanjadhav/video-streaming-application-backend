@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: spring-stream-backend
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=video-streaming;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: Admin@123
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # use 'validate' or 'none' in production
+    show-sql: true
+    database-platform: org.hibernate.dialect.SQLServerDialect
+    properties:
+      hibernate:
+        format_sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+
+files:
+  video: videoDirectory/
+
+aws:
+
+  s3:
+    bucket-name: video-streaming-bucket5433
+    region: ap-south-1
+

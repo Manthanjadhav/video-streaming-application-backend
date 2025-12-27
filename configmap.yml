@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: video-streaming-config
+data:
+  SPRING_APPLICATION_NAME: spring-stream-backend
+
+  SPRING_DATASOURCE_URL: jdbc:sqlserver://mssql-service:1433;databaseName=video-streaming;encrypt=true;trustServerCertificate=true
+  SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  SPRING_JPA_HIBERNATE_DDL_AUTO: update
+  SPRING_JPA_SHOW_SQL: "true"
+  SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.SQLServerDialect
+  SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
+
+  SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE: 1000MB
+  SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE: 1000MB
+
+  FILES_VIDEO: videoDirectory/
+
+  AWS_S3_BUCKET_NAME: video-streaming-bucket5433
+  AWS_S3_REGION: ap-south-1

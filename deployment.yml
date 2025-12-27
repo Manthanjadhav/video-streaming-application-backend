@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-streaming-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: video-streaming-backend
+  template:
+    metadata:
+      labels:
+        app: video-streaming-backend
+    spec:
+      containers:
+        - name: backend
+          image: manthan5433/video-streaming-backend:3.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: prod  
+          envFrom:
+            - configMapRef:
+                name: video-streaming-config
+            - secretRef:
+                name: video-streaming-secrets
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
